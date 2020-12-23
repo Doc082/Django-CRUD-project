@@ -1,0 +1,24 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <h1>User: {{ userName }}</h1>
+    <p>Numero totale post pubblicati : {{ numberPosts }}</p>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Titolo Post</th>
+                <th scope="col">Data dipubblicazione</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for post in posts %}
+            <tr>
+                <th scope="row">{{ post.title }}</th>
+                <td>{{ post.published_date }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

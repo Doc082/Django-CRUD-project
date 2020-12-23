@@ -1,0 +1,17 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+{% if user.is_authenticated %}
+    <h2 class="text-center">Benvenuto: {{ user.get_username }}</h2>
+    <div class="d-grid gap-2 col-6 mx-auto">
+        <a href="{% url 'new_post' %}" class="btn btn-primary active">Scrivi un nuovo post</a>
+        <a href="{% url 'post_view' %}" class="btn btn-primary active">Visualizza tutti i post</a>
+    </div>
+{% else %}
+<h2 class="text-center">Benvenuto, per accedere al sito accedi o registrati</h2>
+    <div class="d-grid gap-2 col-6 mx-auto">
+        <a href="{% url 'login'%}?next={{request.path}}" class="btn btn-primary active">Accedi</a>
+        <a href="{% url 'new_user'%}" class="btn btn-primary active">Registrati</a>
+    </div>
+{% endif %}
+{% endblock %}

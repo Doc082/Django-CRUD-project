@@ -1,0 +1,16 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    {% for post in posts %}
+        <div class="post">
+            <div class="date">
+                <p>Pubblicato da: {{ post.author }} {{ post.published_date }}</p>
+            </div>
+            <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+            <p>{{ post.text|linebreaksbr }}</p>
+            {% if post.author == user %}
+                <a href="{% url 'post_edit' pk=post.pk %}" class="btn btn-primary">Modifica post</a>
+            {% endif %}
+        </div>
+    {% endfor %}
+{% endblock %}
