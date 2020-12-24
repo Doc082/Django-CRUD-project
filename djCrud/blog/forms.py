@@ -7,7 +7,7 @@ User = get_user_model()
 
 class UserRegistration(forms.ModelForm):
     email = forms.EmailField(label='Indirizzo Email')
-    emailConfirmation = forms.EmailField(label='Conferma Email')
+    #emailConfirmation = forms.EmailField(label='Conferma Email')
     password = forms.CharField(widget=forms.PasswordInput)
 
     class Meta:

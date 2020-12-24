@@ -16,13 +16,13 @@ User = get_user_model()
 client = redis.StrictRedis(host='127.0.0.1', port=6379, password='secret',db=0)
 
 def index(request):
-    message=False
+    message = False
     ip = request.META.get('REMOTE_ADDR')
     if request.user.is_authenticated:
         if client.get(request.user.username):
             if client.get(request.user.username).decode("utf-8") != ip:
                 client.set(request.user.username, ip)
-                message = "Il tuo numer IP è diverso dall'ultimo accesso"
+                message = "Il tuo numero IP è diverso dall'ultimo accesso:"
         else:
             client.set(request.user.username, ip)
 
@@ -83,7 +83,7 @@ def postView(request):
 @staff_member_required()
 def adminPage(request, pk=0):
     message=False
-    if pk>0:
+    if pk > 0:
         Post.objects.filter(pk=pk).delete()
         message = 'Post cancellato con successo'
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
